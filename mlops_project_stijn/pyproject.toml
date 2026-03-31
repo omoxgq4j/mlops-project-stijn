@@ -1,6 +1,0 @@
-[project]
-name = "mlops_project_stijn"
-version = "0.1.0"
-dependencies = [
-    "databricks-bundles"
-]
