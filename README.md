@@ -1,49 +1,40 @@
-# mlops-project-stijn
+# Databricks CLI
 
-This directory contains an ML project based on the default
-[Databricks MLOps Stack](https://github.com/databricks/mlops-stack),
-defining a production-grade ML pipeline for automated retraining and batch inference of an ML model on tabular data.
+[![build](https://github.com/databricks/cli/workflows/build/badge.svg?branch=main)](https://github.com/databricks/cli/actions?query=workflow%3Abuild+branch%3Amain)
 
-See the [Project overview](docs/project-overview.md) for details on the ML pipeline and code structure
-in this repo.
+This project is in Public Preview.
 
-## Using this repo
+Documentation is available at https://docs.databricks.com/dev-tools/cli/databricks-cli.html.
 
-The table below links to detailed docs explaining how to use this repo for different use cases.
+## Installation
 
-If you're a data scientist just getting started with this repo for a brand new ML project, we recommend starting with
-the [Project overview](docs/project-overview.md) and
-[ML quickstart](docs/ml-developer-guide-fs.md).
+This CLI is packaged as a dependency-free binary executable and may be located in any directory.
+See https://github.com/databricks/cli/releases for releases and
+the [Databricks documentation](https://docs.databricks.com/en/dev-tools/cli/install.html) for detailed information about installing the CLI.
 
+------
+### Homebrew
 
-When you're satisfied with initial ML experimentation (e.g. validated that a model with reasonable performance can be
-trained on your dataset) and ready to deploy production training/inference
-pipelines, ask your ops team to follow the [MLOps setup guide](docs/mlops-setup.md) to configure CI/CD and deploy 
-production ML pipelines.
+We maintain a [Homebrew tap](https://github.com/databricks/homebrew-tap) for installing the Databricks CLI. You can find instructions for how to install, upgrade and downgrade the CLI using Homebrew [here](https://github.com/databricks/homebrew-tap/blob/main/README.md).
 
-After that, follow the [ML pull request guide](docs/ml-pull-request.md)
-and [ML resource config guide](mlops_project_stijn/databricks-resources/README.md) to propose, test, and deploy changes to production ML code (e.g. update model parameters)
-or pipeline resources (e.g. use a larger instance type for model training) via pull request.
+------
+### Docker
+You can use the CLI via a Docker image by pulling the image from `ghcr.io`. You can find all available versions
+at: https://github.com/databricks/cli/pkgs/container/cli.
+```
+docker pull ghcr.io/databricks/cli:latest
+```
 
-| Role                          | Goal                                                                         | Docs                                                                                                                                                                |
-|-------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| First-time users of this repo | Understand the ML pipeline and code structure in this repo                   | [Project overview](docs/project-overview.md)                                                                                                                        |
-| Data Scientist                | Get started writing ML code for a brand new project                          | [ML quickstart](docs/ml-developer-guide-fs.md). |
-| Data Scientist                | Update production ML code (e.g. model training logic) for an existing project | [ML pull request guide](docs/ml-pull-request.md)                                                                                                                    |
-| Data Scientist                | Modify production model ML resources, e.g. model training or inference jobs  | [ML resource config guide](mlops_project_stijn/databricks-resources/README.md)                                                     |
-| MLOps / DevOps                | Set up CI/CD for the current ML project   | [MLOps setup guide](docs/mlops-setup.md)                                                                                                                            |
+Example of how to run the CLI using the Docker image. More documentation is available at https://docs.databricks.com/dev-tools/bundles/airgapped-environment.html.
+```
+docker run -e DATABRICKS_HOST=$YOUR_HOST_URL -e DATABRICKS_TOKEN=$YOUR_TOKEN ghcr.io/databricks/cli:latest current-user me
+```
 
-## Monorepo
+## Authentication
 
-It's possible to use the repo as a monorepo that contains multiple projects. All projects share the same workspaces and service principals.
+This CLI follows the Databricks Unified Authentication principles.
 
-For example, assuming there's existing repo with root directory name `monorepo_root_dir` and project name `project1`
-1. Create another project from cookiecutter with project name `project2` and root directory name `project2`.
-2. Copy the internal directory `project2/project2` to root directory of existing repo `monorepo_root_dir/project2`.
-3. Copy yaml files from `project2/.github/workflows/` to `monorepo_root_dir/.github/workflows/` and make sure there's no name conflicts.
+You can find a detailed description at https://github.com/databricks/databricks-sdk-go#authentication.
 
-
-
-
-
-
+## Privacy Notice
+Databricks CLI use is subject to the [Databricks License](https://github.com/databricks/cli/blob/main/LICENSE) and [Databricks Privacy Notice](https://www.databricks.com/legal/privacynotice), including any Usage Data provisions.
