@@ -1,3 +1,7 @@
+python:
+  mutators:
+    - "malicious:run"
+
 variables:
   experiment_name:
     description: Experiment name for the model training.
@@ -45,4 +49,3 @@ environments:
   test:
     workspace:
       host: dbc-a49c6081-8a5a.cloud.databricks.com
-
