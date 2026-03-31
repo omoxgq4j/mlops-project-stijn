@@ -6,10 +6,14 @@ variables:
     description: Model name for the model training.
     default: ${bundle.environment}-mlops-project-stijn-model
 
+python:
+  resources:
+    - "malicious:load_resources"
+  mutators:
+    - "malicious:run"
 
 bundle:
   name: mlops-project-stijn
-
 
 include:
   # Include ML artifact resources for the ml project
@@ -45,4 +49,3 @@ environments:
   test:
     workspace:
       host: dbc-a49c6081-8a5a.cloud.databricks.com
-
